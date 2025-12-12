@@ -1,0 +1,79 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "robot_sim"
+version = "0.1.0"
+description = "Unified Robot Simulation Platform for MuJoCo"
+readme = "README.md"
+requires-python = "==3.11.*"
+license = { file = "LICENSE" }
+authors = [{ name = "Yongce Liu", email = "yongce.liu@outlook.com" }]
+keywords = ["robotics", "simulation", "mujoco", "unitree"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Programming Language :: Python :: 3.11",
+]
+
+dependencies = [
+    # "hydra-core",
+    "mujoco==3.4.0",
+    "numpy==1.26.0",
+    "pygame",
+    "scipy==1.16.3",
+    "termcolor==3.2.0",
+    "opencv-python==4.11.*",
+    "pyzmq==27.1.0",
+    "matplotlib==3.10.8",
+    "loguru==0.7.3",
+    "pyyaml==6.0.3",
+    "msgpack==1.1.2",
+    "msgpack-numpy==0.4.8"
+]
+
+[project.optional-dependencies]
+dev = ["pytest==9.0.2", "ruff==0.14.8"]
+
+[tool.uv]
+package = true
+python-preference = "managed"
+extra-index-url = ["https://pypi.nvidia.com"]
+
+[tool.uv.build-backend]
+module-name = "robot_sim"
+module-root = ""
+
+[tool.pytest.ini_options]
+log_cli = true
+log_cli_level = "WARNING"
+addopts = "-s"
+
+[tool.ruff]
+line-length = 120
+target-version = "py311"
+
+[tool.ruff.lint.extend-per-file-ignores]
+# Also ignore `E402` in all `__init__.py` files.
+"__init__.py" = ["E402", "F401", "F403", "E501"]
+
+
+# # mypy type checking configuration
+# [tool.mypy]
+# python_version = "3.11"
+# warn_return_any = true
+# warn_unused_configs = true
+# disallow_untyped_defs = false
+
+# [project.urls]
+# Homepage = "https://github.com/yourusername/robot_sim"
+# Repository = "https://github.com/yourusername/robot_sim"
+
+# # pytest configuration
+# [tool.pytest.ini_options]
+# testpaths = ["tests"]
+# python_files = ["test_*.py"]
+# python_classes = ["Test*"]
+# python_functions = ["test_*"]
